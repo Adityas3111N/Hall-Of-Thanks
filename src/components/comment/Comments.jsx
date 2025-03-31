@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchComments, addComment, deleteComment } from '../../features/commentSlice.js';
 import { formatDistanceToNow } from 'date-fns';
+import { Link } from 'react-router-dom';
 
 function Comments({ postId }) {
     const dispatch = useDispatch();
@@ -52,7 +53,10 @@ function Comments({ postId }) {
                         <div key={comment.$id} className="bg-gray-100 p-4 rounded-lg shadow-sm">
                             <p className="text-gray-900 font-medium">{comment.content}</p>
                             <div className="text-sm text-gray-500 mt-1 flex items-center justify-between">
-                                <span>By: <span className="font-semibold text-gray-700">{comment.userName || "Anonymous"}</span> • {getTimeAgo(comment.$createdAt)}</span>
+                                <span>By: <Link to={`/update-profile/${comment.userId}/${comment.userName}`} 
+                                className="font-semibold text-blue-600 hover:underline">
+                                    {comment.userName || "Anonymous"}
+                                </Link> • {getTimeAgo(comment.$createdAt)}</span>
                                 {user?.userData?.$id === comment.userId && (
                                     <button onClick={() => dispatch(deleteComment(comment.$id))}
                                         className="text-red-500 hover:text-red-600 font-medium cursor-pointer">

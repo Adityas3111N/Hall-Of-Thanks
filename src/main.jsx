@@ -12,6 +12,7 @@ import AllPosts from './pages/AllPosts.jsx';
 import AddPost from './pages/AddPost.jsx';
 import EditPost from './pages/EditPost.jsx';
 import Post from './pages/Post.jsx';
+import Profile from './pages/Profile.jsx';
 import Signup from './pages/Signup.jsx';
 import Home from './pages/Home.jsx';
 import HallOfThanksIntro from './pages/Intro.jsx';
@@ -91,6 +92,10 @@ const router = createBrowserRouter([
         {
             path: "/login-intro",
             element: <LoginWelcome />,
+        },
+        {
+            path: "/update-profile/:userId/:userName",
+            element: <Profile />,
         },
     ],
 },
